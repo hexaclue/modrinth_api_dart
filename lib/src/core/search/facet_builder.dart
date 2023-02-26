@@ -28,6 +28,8 @@ class FacetListBuilder {
   }
 
   /// When searching, the API will return results that match any of the facets in this list.
+  ///
+  /// Must contain at least two facets. If you only want to match one facet, use [and] instead.
   void or(List<Facet> facets) {
     orBlocks.add(facets);
   }
