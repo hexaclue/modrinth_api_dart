@@ -1,5 +1,5 @@
-import 'package:modrinth_api/src/team/team_permissions.dart';
-import 'package:modrinth_api/src/user/user.dart';
+import "package:modrinth_api/src/core/team/team_permissions.dart";
+import "package:modrinth_api/src/core/user/user.dart";
 
 class TeamMember {
   TeamMember({

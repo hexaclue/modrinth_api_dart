@@ -1,5 +1,5 @@
-import 'package:modrinth_api/src/version/dependency.dart';
-import 'package:modrinth_api/src/version/version_file.dart';
+import "package:modrinth_api/src/core/version/dependency.dart";
+import "package:modrinth_api/src/core/version/version_file.dart";
 
 class Version {
   Version({

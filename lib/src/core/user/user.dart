@@ -1,5 +1,5 @@
-import 'package:modrinth_api/src/user/badges.dart';
-import 'package:modrinth_api/src/user/payout.dart';
+import "package:modrinth_api/src/core/user/badges.dart";
+import "package:modrinth_api/src/core/user/payout.dart";
 
 class User {
   User({

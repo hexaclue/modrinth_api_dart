@@ -1,4 +1,4 @@
-import 'package:modrinth_api/src/version/version_hashes.dart';
+import "package:modrinth_api/src/core/version/version_hashes.dart";
 
 class VersionFile {
   VersionFile({

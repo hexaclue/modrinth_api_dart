@@ -1,4 +1,4 @@
-import 'package:modrinth_api/src/project/project_enums.dart';
+import "package:modrinth_api/src/core/project/project_enums.dart";
 
 class SearchResult {
   SearchResult({

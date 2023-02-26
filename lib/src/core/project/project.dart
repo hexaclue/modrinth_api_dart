@@ -1,8 +1,8 @@
-import 'package:modrinth_api/src/project/donation_platform.dart';
-import 'package:modrinth_api/src/project/gallery_image.dart';
-import 'package:modrinth_api/src/project/moderator_message.dart';
-import 'package:modrinth_api/src/project/project_enums.dart';
-import 'package:modrinth_api/src/project/project_license.dart';
+import "package:modrinth_api/src/core/project/donation_platform.dart";
+import "package:modrinth_api/src/core/project/gallery_image.dart";
+import "package:modrinth_api/src/core/project/moderator_message.dart";
+import "package:modrinth_api/src/core/project/project_enums.dart";
+import "package:modrinth_api/src/core/project/project_license.dart";
 
 class Project {
   Project({

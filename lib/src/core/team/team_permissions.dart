@@ -1,4 +1,4 @@
-import 'package:modrinth_api/src/team/team_permissions_constants.dart';
+import "package:modrinth_api/src/core/team/team_permissions_constants.dart";
 
 /// Badges applicable to this user. These are currently unused and undisplayed, and as such are subject to change
 class TeamPermissions {
