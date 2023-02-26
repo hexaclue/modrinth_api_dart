@@ -6,7 +6,7 @@ import "package:modrinth_api/src/modrinth.dart";
 import "package:http/http.dart" as http;
 
 mixin ProjectsRequests on IModrinthApi {
-  /// Search for projects
+  /// Search for projects.
   ///
   /// [query] is the query to search for. Can be null
   ///
