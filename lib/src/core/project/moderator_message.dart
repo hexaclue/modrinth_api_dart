@@ -6,8 +6,8 @@ class ModeratorMessage {
   });
 
   /// The message that a moderator has left for the project
-  String message;
+  final String message;
 
   /// The longer body of the message that a moderator has left for the project
-  String? body;
+  final String? body;
 }

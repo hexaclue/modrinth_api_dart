@@ -7,11 +7,22 @@ class ProjectLicense {
   });
 
   /// The SPDX license ID of a project
-  String id;
+  final String id;
 
-  /// The long name of a license
-  String name;
+  /// The long name of a license. Can be empty
+  final String name;
 
   /// The URL to this license
-  String? url;
+  final String? url;
+
+  factory ProjectLicense.fromMap(Map<String, dynamic> map) => ProjectLicense(
+        id: map["id"]!,
+        name: map["name"]!,
+        url: map["url"],
+      );
+
+  @override
+  String toString() {
+    return "ProjectLicense(id: $id, name: $name)";
+  }
 }

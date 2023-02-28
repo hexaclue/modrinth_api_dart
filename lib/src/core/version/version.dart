@@ -1,4 +1,7 @@
-import "package:modrinth_api/src/core/version/dependency.dart";
+import "dart:convert";
+
+import "package:collection/collection.dart";
+import "package:modrinth_api/src/core/version/version_dependency.dart";
 import "package:modrinth_api/src/core/version/version_file.dart";
 
 class Version {
@@ -32,7 +35,7 @@ class Version {
   final String? changelog;
 
   /// A list of specific versions of projects that this version depends on
-  final List<Dependency> dependencies;
+  final List<VersionDependency> dependencies;
 
   /// A list of versions of Minecraft that this version supports
   final List<String> gameVersions;
@@ -71,6 +74,31 @@ class Version {
 
   /// A list of files available for download for this version
   final List<VersionFile> files;
+
+  factory Version.fromMap(Map<String, dynamic> map) {
+    return Version(
+      name: map["name"]!,
+      versionNumber: map["versionNumber"]!,
+      changelog: map["changelog"],
+      dependencies: List<VersionDependency>.from((map["dependencies"]! as List).map((x) => VersionDependency.fromMap(x))),
+      gameVersions: List<String>.from(map["game_versions"]!),
+      releaseChannel:
+          ReleaseChannel.values.firstWhereOrNull((element) => map["version_type"] == element.name) ?? ReleaseChannel.values[0],
+      loaders: List<String>.from(map["loaders"]!),
+      featured: map["featured"]!,
+      status: VersionStatus.values.firstWhereOrNull((element) => map["status"] == element.name) ?? VersionStatus.values[0],
+      requestedStatus: RequestedStatus.values.firstWhereOrNull((element) => map["requested_status"] == element.name),
+      id: map["id"]!,
+      projectId: map["project_id"]!,
+      authorId: map["author_id"]!,
+      published: DateTime.tryParse(map["date_published"]) ?? DateTime(0),
+      downloads: map["downloads"]!,
+      changelogUrl: null,
+      files: List<VersionFile>.from((map["files"]! as List).map((x) => VersionFile.fromMap(x))),
+    );
+  }
+
+  factory Version.fromJson(String source) => Version.fromMap(json.decode(source));
 }
 
 enum ReleaseChannel { release, beta, alpha }

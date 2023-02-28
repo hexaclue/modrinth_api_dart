@@ -24,4 +24,4 @@ export "src/core/user/user.dart";
 export "src/core/version/version.dart";
 export "src/core/version/version_file.dart";
 export "src/core/version/version_hashes.dart";
-export "src/core/version/dependency.dart";
+export "src/core/version/version_dependency.dart";

@@ -1,9 +1,11 @@
-import 'dart:convert';
+import "dart:convert";
 
-import "package:modrinth_api/src/core/search/facet_builder.dart";
-import 'package:modrinth_api/src/core/search/search_result.dart';
-import "package:modrinth_api/src/modrinth.dart";
 import "package:http/http.dart" as http;
+import "package:modrinth_api/src/core/project/project.dart";
+import "package:modrinth_api/src/core/project/project_dependency.dart";
+import "package:modrinth_api/src/core/search/facet_builder.dart";
+import "package:modrinth_api/src/core/search/search_result.dart";
+import "package:modrinth_api/src/modrinth.dart";
 
 mixin ProjectsRequests on IModrinthApi {
   /// Search for projects.
@@ -72,6 +74,99 @@ mixin ProjectsRequests on IModrinthApi {
     var decoded = (json.decode(res.body) as Map)["hits"] as List;
 
     return decoded.map((e) => SearchResult.fromMap(e)).toList();
+  }
+
+  /// Get a project by its id or slug.
+  ///
+  /// [idOrSlug] is the id or slug of the project to get. Can **not** be empty.
+  Future<Project> getProject(String idOrSlug) async {
+    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/project/$idOrSlug");
+
+    http.Response res = await client.get(uri);
+
+    if (res.statusCode != 200) {
+      throw Exception("Failed to get project.\nStatus code ${res.statusCode}.\nBody: ${res.body}");
+    }
+
+    return Project.fromMap(json.decode(res.body));
+  }
+
+  /// Get multiple projects by their ids.
+  ///
+  /// Note that you can not use slugs here.
+  Future<List<Project>> getMultipleProjects(List<String> ids) async {
+    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/projects");
+
+    uri = uri.replace(
+      queryParameters: {
+        "ids": json.encode(ids),
+      },
+    );
+
+    final http.Response res = await client.get(uri);
+
+    if (res.statusCode != 200) {
+      throw Exception("Failed to get projects.\nStatus code ${res.statusCode}.\nBody: ${res.body}");
+    }
+
+    final List decoded = json.decode(res.body);
+
+    return decoded.map((e) => Project.fromMap(e)).toList();
+  }
+
+  /// Get [count] random projects.
+  ///
+  /// Default [count] is 10, maximum is 100.
+  ///
+  /// Note: list may not be of size [count], as the API itself filters out projects that are not (publically) searchable.
+  Future<List<Project>> getRandomProjects([int count = 10]) async {
+    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/projects_random");
+
+    uri = uri.replace(
+      queryParameters: {
+        "count": "$count",
+      },
+    );
+
+    final http.Response res = await client.get(uri);
+
+    if (res.statusCode != 200) {
+      throw Exception("Failed to get $count random projects.\nStatus code ${res.statusCode}.\nBody: ${res.body}");
+    }
+
+    print(res.headers);
+
+    final List decoded = json.decode(res.body);
+
+    return decoded.map((e) => Project.fromMap(e)).toList();
+  }
+
+  /// Check if a project exists.
+  ///
+  /// [idOrSlug] is the id or slug of the project to get. Can **not** be empty.
+  ///
+  /// Note: this function does not throw if the request returns 404, as opposed to all other functions.
+  Future<bool> checkProjectExists(String idOrSlug) async {
+    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/project/$idOrSlug/check");
+
+    http.Response res = await client.get(uri);
+
+    return res.statusCode == 200;
+  }
+
+  /// Get dependencies of a project.
+  ///
+  /// [idOrSlug] is the id or slug of the project to get. Can **not** be empty.
+  Future<ProjectDependencies> getProjectDependencies(String idOrSlug) async {
+    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/project/$idOrSlug/dependencies");
+
+    http.Response res = await client.get(uri);
+
+    if (res.statusCode != 200) {
+      throw Exception("Failed to get project dependencies.\nStatus code ${res.statusCode}.\nBody: ${res.body}");
+    }
+
+    return ProjectDependencies.fromJson(res.body);
   }
 }
 
