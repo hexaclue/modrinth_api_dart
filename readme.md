@@ -2,3 +2,7 @@
 Unofficial package.
 
 This packages currently targets Labrinth version `2.7.0` / `3b22f59`.
+
+Supports search facets.
+
+100% written in Dart!
