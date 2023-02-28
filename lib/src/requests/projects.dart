@@ -31,7 +31,7 @@ mixin ProjectsRequests on IModrinthApi {
   }) async {
     Uri uri = Uri.parse("${IModrinthApi.baseUrl}/search");
 
-    Map<String, String> queryParams = {};
+    final Map<String, String> queryParams = {};
 
     if (query != null) {
       queryParams["query"] = query;
@@ -65,13 +65,13 @@ mixin ProjectsRequests on IModrinthApi {
       uri = uri.replace(queryParameters: queryParams);
     }
 
-    http.Response res = await client.get(uri);
+    final http.Response res = await client.get(uri);
 
     if (res.statusCode != 200) {
       throw Exception("Failed to search for projects.\nStatus code ${res.statusCode}.\nBody: ${res.body}");
     }
 
-    var decoded = (json.decode(res.body) as Map)["hits"] as List;
+    final decoded = (json.decode(res.body) as Map)["hits"] as List;
 
     return decoded.map((e) => SearchResult.fromMap(e)).toList();
   }
@@ -80,9 +80,9 @@ mixin ProjectsRequests on IModrinthApi {
   ///
   /// [idOrSlug] is the id or slug of the project to get. Can **not** be empty.
   Future<Project> getProject(String idOrSlug) async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/project/$idOrSlug");
+    final Uri uri = Uri.parse("${IModrinthApi.baseUrl}/project/$idOrSlug");
 
-    http.Response res = await client.get(uri);
+    final http.Response res = await client.get(uri);
 
     if (res.statusCode != 200) {
       throw Exception("Failed to get project.\nStatus code ${res.statusCode}.\nBody: ${res.body}");
@@ -134,8 +134,6 @@ mixin ProjectsRequests on IModrinthApi {
       throw Exception("Failed to get $count random projects.\nStatus code ${res.statusCode}.\nBody: ${res.body}");
     }
 
-    print(res.headers);
-
     final List decoded = json.decode(res.body);
 
     return decoded.map((e) => Project.fromMap(e)).toList();
@@ -147,9 +145,9 @@ mixin ProjectsRequests on IModrinthApi {
   ///
   /// Note: this function does not throw if the request returns 404, as opposed to all other functions.
   Future<bool> checkProjectExists(String idOrSlug) async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/project/$idOrSlug/check");
+    final Uri uri = Uri.parse("${IModrinthApi.baseUrl}/project/$idOrSlug/check");
 
-    http.Response res = await client.get(uri);
+    final http.Response res = await client.get(uri);
 
     return res.statusCode == 200;
   }
@@ -158,9 +156,9 @@ mixin ProjectsRequests on IModrinthApi {
   ///
   /// [idOrSlug] is the id or slug of the project to get. Can **not** be empty.
   Future<ProjectDependencies> getProjectDependencies(String idOrSlug) async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/project/$idOrSlug/dependencies");
+    final Uri uri = Uri.parse("${IModrinthApi.baseUrl}/project/$idOrSlug/dependencies");
 
-    http.Response res = await client.get(uri);
+    final http.Response res = await client.get(uri);
 
     if (res.statusCode != 200) {
       throw Exception("Failed to get project dependencies.\nStatus code ${res.statusCode}.\nBody: ${res.body}");
