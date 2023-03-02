@@ -1,8 +1,9 @@
-import 'dart:convert';
+import "dart:convert";
 
 import "package:http/http.dart" as http;
 import "package:modrinth_api/src/internal/api_http_client.dart";
 import "package:modrinth_api/src/requests/projects.dart";
+import "package:modrinth_api/src/requests/users.dart";
 import "package:modrinth_api/src/requests/versions.dart";
 
 class IModrinthApi {
@@ -13,7 +14,7 @@ class IModrinthApi {
       throw ArgumentError("Project name must be in ASCII format. Currently, it contains non-ASCII characters.");
     }
 
-    client = ApiHttpClient("@hihiqy1/modrinth_api_dart/0.0.0+infdev|user=$project", http.Client());
+    client = ApiHttpClient("@hihiqy1/modrinth_api_dart/0.0.0+infdev|user=$project", http.Client(), apiKey);
   }
 
   /// The api key to use for requests
@@ -37,7 +38,7 @@ class IModrinthApi {
 /// The main class for the Modrinth API
 ///
 /// [project] is the project name to use for requests to the API. PLEASE use a unique name for your project. Include a version number if possible.
-class ModrinthApi extends IModrinthApi with ProjectsRequests, VersionsRequests {
+class ModrinthApi extends IModrinthApi with ProjectsRequests, VersionsRequests, UsersRequests {
   ModrinthApi({
     required super.project,
     super.apiKey,
