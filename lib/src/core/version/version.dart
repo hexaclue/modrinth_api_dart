@@ -78,7 +78,7 @@ class Version {
   factory Version.fromMap(Map<String, dynamic> map) {
     return Version(
       name: map["name"]!,
-      versionNumber: map["versionNumber"]!,
+      versionNumber: map["version_number"]!,
       changelog: map["changelog"],
       dependencies: List<VersionDependency>.from((map["dependencies"]! as List).map((x) => VersionDependency.fromMap(x))),
       gameVersions: List<String>.from(map["game_versions"]!),
@@ -99,6 +99,15 @@ class Version {
   }
 
   factory Version.fromJson(String source) => Version.fromMap(json.decode(source));
+
+  @override
+  String toString() {
+    return "Version(name: $name, versionNumber: $versionNumber)";
+  }
+
+  String toLongString() {
+    return "Version(name: $name, versionNumber: $versionNumber, changelog: $changelog, dependencies: $dependencies, gameVersions: $gameVersions, releaseChannel: $releaseChannel, loaders: $loaders, featured: $featured, status: $status, requestedStatus: $requestedStatus, id: $id, projectId: $projectId, authorId: $authorId, published: $published, downloads: $downloads, changelogUrl (DEPRECATED): $changelogUrl, files: $files)";
+  }
 }
 
 enum ReleaseChannel { release, beta, alpha }

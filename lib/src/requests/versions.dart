@@ -91,4 +91,162 @@ mixin VersionsRequests on IModrinthApi {
 
     return decoded.map((e) => Version.fromMap(e)).toList();
   }
+
+  /// Get a version from a file hash.
+  ///
+  /// [hash] is the hash of the file to get the version for. Can **not** be empty.
+  ///
+  /// [algorithm] is the algorithm used to hash the file. Default is [HashAlgorithm.sha1]
+  ///
+  /// [multiple] is whether to return multiple results when looking for this hash. This is useful for when a file is uploaded multiple times. Default is false.
+  Future<Version> getVersionFromHash(
+    String hash, {
+    HashAlgorithm algorithm = HashAlgorithm.sha1,
+    bool? multiple,
+  }) async {
+    final Uri uri = Uri.parse("${IModrinthApi.baseUrl}/version_file/$hash");
+
+    final Map<String, String> queryParams = {
+      "algorithm": algorithm.name,
+    };
+
+    if (multiple != null) {
+      queryParams["multiple"] = multiple.toString();
+    }
+
+    uri.replace(queryParameters: queryParams);
+
+    final http.Response res = await client.get(uri);
+
+    if (res.statusCode != 200) {
+      throw Exception("Failed to get version from hash.\nStatus code ${res.statusCode}.\nBody: ${res.body}");
+    }
+
+    return Version.fromMap(json.decode(res.body));
+  }
+
+  /// Get multiple versions from file hashes.
+  ///
+  /// [hashes] is the list of hashes of files to get the version for. Can **not** be empty.
+  ///
+  /// [algorithm] is the algorithm used to hash the files. Note that the algorithm must be the same for all hashes. Default is [HashAlgorithm.sha1]
+  Future<List<Version>> getMultipleVersionsFromHashes(
+    List<String> hashes, {
+    HashAlgorithm algorithm = HashAlgorithm.sha1,
+  }) async {
+    final Uri uri = Uri.parse("${IModrinthApi.baseUrl}/version_files");
+
+    final http.Response res = await client.post(
+      uri,
+      body: json.encode(
+        {
+          "hashes": hashes,
+          "algorithm": algorithm.name,
+        },
+      ),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    );
+
+    if (res.statusCode != 200) {
+      throw Exception("Failed to get versions from hashes.\nStatus code ${res.statusCode}.\nBody: ${res.body}");
+    }
+
+    final Map decoded = json.decode(res.body);
+
+    return decoded.values.map((e) => Version.fromMap(e)).toList();
+  }
+
+  /// Get latest version of a project, from an exising version file hash, filtering by loaders and game versions.
+  ///
+  /// [hash] is the hash of the file to get the version for. Can **not** be empty.
+  ///
+  /// [loaders] is the list of loaders to filter by. Can **not** be empty.
+  ///
+  /// [gameVersions] is the list of game versions to filter by. Can **not** be empty.
+  ///
+  /// [algorithm] is the algorithm used to hash the file. Default is [HashAlgorithm.sha1]
+  Future<Version> getLatestVersionFromHash({
+    required String hash,
+    required List<String> loaders,
+    required List<String> gameVersions,
+    HashAlgorithm algorithm = HashAlgorithm.sha1,
+  }) async {
+    final Uri uri = Uri.parse("${IModrinthApi.baseUrl}/version_file/$hash/update");
+
+    final Map<String, String> queryParams = {
+      "algorithm": algorithm.name,
+    };
+
+    uri.replace(queryParameters: queryParams);
+
+    final http.Response res = await client.post(
+      uri,
+      body: json.encode(
+        {
+          "loaders": loaders,
+          "game_versions": gameVersions,
+        },
+      ),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    );
+
+    if (res.statusCode != 200) {
+      throw Exception("Failed to get version from hash.\nStatus code ${res.statusCode}.\nBody: ${res.body}");
+    }
+
+    return Version.fromMap(json.decode(res.body));
+  }
+
+  /// Get latest versions of multiple projects, from exising version file hashes, filtering by loaders and game versions.
+  ///
+  /// [hashes] is the list of hashes of files to get the latest versions for. Can **not** be empty.
+  ///
+  /// [loaders] is the list of loaders to filter by. Can **not** be empty.
+  ///
+  /// [gameVersions] is the list of game versions to filter by. Can **not** be empty.
+  ///
+  /// [algorithm] is the algorithm used to hash the files. Note that the algorithm must be the same for all hashes. Default is [HashAlgorithm.sha1]
+  Future<List<Version>> getMultipleLatestVersionsFromHashes({
+    required List<String> hashes,
+    required List<String> loaders,
+    required List<String> gameVersions,
+    HashAlgorithm algorithm = HashAlgorithm.sha1,
+  }) async {
+    final Uri uri = Uri.parse("${IModrinthApi.baseUrl}/version_files/update");
+
+    final Map<String, String> queryParams = {
+      "algorithm": algorithm.name,
+    };
+
+    uri.replace(queryParameters: queryParams);
+
+    final http.Response res = await client.post(
+      uri,
+      body: json.encode(
+        {
+          "hashes": hashes,
+          "algorithm": algorithm.name,
+          "loaders": loaders,
+          "game_versions": gameVersions,
+        },
+      ),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    );
+
+    if (res.statusCode != 200) {
+      throw Exception("Failed to get version from hash.\nStatus code ${res.statusCode}.\nBody: ${res.body}");
+    }
+
+    final Map decoded = json.decode(res.body);
+
+    return decoded.values.map((e) => Version.fromMap(e)).toList();
+  }
 }
+
+enum HashAlgorithm { sha1, sha512 }
