@@ -20,7 +20,7 @@ mixin UsersRequests on IModrinthApi {
       throw Exception("Failed to get user.\nStatus code ${res.statusCode}.\nBody: ${res.body}");
     }
 
-    return User.fromMap(json.decode(res.body));
+    return User.fromJson(res.body);
   }
 
   /// Gets the currently authenticated user
