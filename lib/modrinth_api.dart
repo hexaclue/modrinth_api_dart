@@ -21,6 +21,8 @@ export "src/core/team/team_permissions_constants.dart";
 export "src/core/user/badges.dart";
 export "src/core/user/badges_constants.dart";
 export "src/core/user/notification.dart";
+export "src/core/user/payout_history_item.dart";
+export "src/core/user/payout_history.dart";
 export "src/core/user/payout.dart";
 export "src/core/user/user.dart";
 

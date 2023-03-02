@@ -29,7 +29,7 @@ class User {
   final String? email;
 
   /// A description of the user
-  final String bio;
+  final String? bio;
 
   /// Various data relating to the user's payouts status (you can only see your own)
   final Payout? payout;
@@ -57,7 +57,7 @@ class User {
       username: map["username"]!,
       name: map["name"],
       email: map["email"],
-      bio: map["bio"]!,
+      bio: map["bio"],
       payout: map["payout_data"] != null ? Payout.fromMap(map["payout_data"]) : null,
       id: map["id"]!,
       githubId: map["github_id"],

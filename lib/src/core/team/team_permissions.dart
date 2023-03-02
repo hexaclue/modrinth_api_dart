@@ -1,6 +1,6 @@
 import "package:modrinth_api/src/core/team/team_permissions_constants.dart";
 
-/// Badges applicable to this user. These are currently unused and undisplayed, and as such are subject to change
+/// Team permissions applicable to this user.
 class TeamPermissions {
   const TeamPermissions(this.raw);
 
@@ -16,4 +16,22 @@ class TeamPermissions {
   bool get deleteProject => (raw & TeamPermissionsConstants.deleteProject) != 0;
   bool get viewAnalytics => (raw & TeamPermissionsConstants.viewAnalytics) != 0;
   bool get viewPayouts => (raw & TeamPermissionsConstants.viewPayouts) != 0;
+
+  @override
+  String toString() {
+    List<String> permissions = [
+      if (uploadVersion) "uploadVersion",
+      if (deleteVersion) "deleteVersion",
+      if (editDetails) "editDetails",
+      if (editBody) "editBody",
+      if (manageInvites) "manageInvites",
+      if (removeMember) "removeMember",
+      if (editMember) "editMember",
+      if (deleteProject) "deleteProject",
+      if (viewAnalytics) "viewAnalytics",
+      if (viewPayouts) "viewPayouts",
+    ];
+
+    return "TeamPermissions(raw: $raw; ${permissions.join(", ")})";
+  }
 }
