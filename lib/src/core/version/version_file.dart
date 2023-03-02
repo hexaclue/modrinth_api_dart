@@ -3,6 +3,7 @@ import "dart:convert";
 import "package:collection/collection.dart";
 import "package:modrinth_api/src/core/version/version_hashes.dart";
 
+/// A file that is part of a version.
 class VersionFile {
   VersionFile({
     required this.hashes,

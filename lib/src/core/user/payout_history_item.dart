@@ -1,3 +1,4 @@
+/// Item in the history of payouts of a user.
 class PayoutHistoryItem {
   PayoutHistoryItem({
     required this.created,

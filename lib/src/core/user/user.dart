@@ -1,9 +1,10 @@
 import "dart:convert";
 
-import 'package:collection/collection.dart';
+import "package:collection/collection.dart";
 import "package:modrinth_api/src/core/user/badges.dart";
 import "package:modrinth_api/src/core/user/payout.dart";
 
+/// A user on Modrinth.
 class User {
   User({
     required this.username,

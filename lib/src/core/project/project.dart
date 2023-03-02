@@ -5,6 +5,7 @@ import "package:modrinth_api/src/core/project/moderator_message.dart";
 import "package:modrinth_api/src/core/project/project_enums.dart";
 import "package:modrinth_api/src/core/project/project_license.dart";
 
+/// A project on Modrinth. Could be anything, be it a mod, a resource pack, a data pack, or even a library.
 class Project {
   Project({
     required this.slug,

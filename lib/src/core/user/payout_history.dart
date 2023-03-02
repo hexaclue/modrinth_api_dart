@@ -2,6 +2,9 @@ import "dart:convert";
 
 import "package:modrinth_api/src/core/user/payout_history_item.dart";
 
+/// Information about a user's payout history.
+///
+/// For actual history of transactions, see [payouts] (list of [PayoutHistoryItem]).
 class PayoutHistory {
   PayoutHistory({
     this.allTime,

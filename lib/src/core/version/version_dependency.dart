@@ -2,6 +2,7 @@ import "dart:convert";
 
 import "package:collection/collection.dart";
 
+/// A project a version could depend on.
 class VersionDependency {
   VersionDependency({
     this.versionId,

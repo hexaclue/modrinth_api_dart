@@ -1,4 +1,4 @@
-/// A message that a moderator sent regarding the project
+/// A message that a moderator sent regarding a project.
 class ModeratorMessage {
   ModeratorMessage({
     required this.message,

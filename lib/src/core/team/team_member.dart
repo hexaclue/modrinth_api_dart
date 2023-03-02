@@ -3,6 +3,7 @@ import "dart:convert";
 import "package:modrinth_api/src/core/team/team_permissions.dart";
 import "package:modrinth_api/src/core/user/user.dart";
 
+/// A member in a team.
 class TeamMember {
   TeamMember({
     required this.teamId,

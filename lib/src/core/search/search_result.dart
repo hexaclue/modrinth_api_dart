@@ -2,6 +2,9 @@ import "package:collection/collection.dart";
 
 import "package:modrinth_api/src/core/project/project_enums.dart";
 
+/// Project search result.
+///
+/// As opposed to [Project], this class does not contain all the information about a project.
 class SearchResult {
   SearchResult({
     required this.slug,

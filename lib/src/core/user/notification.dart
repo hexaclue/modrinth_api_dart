@@ -2,6 +2,7 @@ import "dart:convert";
 
 import "package:collection/collection.dart";
 
+/// A notification a user may have on their account.
 class Notification {
   Notification({
     required this.id,

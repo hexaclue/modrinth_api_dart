@@ -2,6 +2,7 @@ import "dart:convert";
 
 import "package:collection/collection.dart";
 
+/// A [User]'s payout information.
 class Payout {
   Payout({
     required this.balance,

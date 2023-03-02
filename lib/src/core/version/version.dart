@@ -4,6 +4,7 @@ import "package:collection/collection.dart";
 import "package:modrinth_api/src/core/version/version_dependency.dart";
 import "package:modrinth_api/src/core/version/version_file.dart";
 
+/// A version of a project.
 class Version {
   Version({
     required this.name,

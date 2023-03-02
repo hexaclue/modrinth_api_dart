@@ -1,3 +1,4 @@
+/// Constants for team permissions.
 class TeamPermissionsConstants {
   static const int uploadVersion = 1 << 0;
   static const int deleteVersion = 1 << 1;

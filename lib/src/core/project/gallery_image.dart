@@ -1,4 +1,4 @@
-/// A list of images that have been uploaded to the project's gallery
+/// A list of images that have been uploaded to a project's gallery.
 class GalleryImage {
   GalleryImage({
     required this.url,

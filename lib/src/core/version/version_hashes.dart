@@ -1,5 +1,6 @@
 import "dart:convert";
 
+/// File hashes that are used to verify the integrity of or search for a version file.
 class VersionHashes {
   VersionHashes({
     required this.sha1,

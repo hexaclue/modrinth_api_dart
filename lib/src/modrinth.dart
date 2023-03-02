@@ -36,7 +36,7 @@ class IModrinthApi {
   static const String baseUrl = "https://api.modrinth.com/v2";
 }
 
-/// The main class for the Modrinth API
+/// The main class for the Modrinth API.
 ///
 /// [project] is the project name to use for requests to the API. PLEASE use a unique name for your project. Include a version number if possible.
 class ModrinthApi extends IModrinthApi with ProjectsRequests, VersionsRequests, UsersRequests, TeamsRequests {

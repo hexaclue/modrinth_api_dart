@@ -1,3 +1,4 @@
+/// Constants for badges.
 class BadgesConstants {
   static const int earlyModpackAdopter = 1 << 1;
   static const int earlyRespackAdopter = 1 << 2;

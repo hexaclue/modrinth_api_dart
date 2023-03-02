@@ -1,6 +1,6 @@
 import "package:modrinth_api/src/core/user/badges_constants.dart";
 
-/// Badges applicable to this user. These are currently unused and undisplayed, and as such are subject to change
+/// Badges applicable to a user. These are currently unused and undisplayed, and as such are subject to change
 class Badges {
   const Badges(this.raw);
 

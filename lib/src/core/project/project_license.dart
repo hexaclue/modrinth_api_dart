@@ -1,4 +1,4 @@
-/// The license of the project
+/// The license of a project.
 class ProjectLicense {
   ProjectLicense({
     required this.id,
