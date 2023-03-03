@@ -2,9 +2,9 @@ import "dart:convert";
 
 import "package:http/http.dart" as http;
 import "package:modrinth_api/src/internal/api_http_client.dart";
-import 'package:modrinth_api/src/requests/miscellaneous.dart';
+import "package:modrinth_api/src/requests/miscellaneous.dart";
 import "package:modrinth_api/src/requests/projects.dart";
-import 'package:modrinth_api/src/requests/tags.dart';
+import "package:modrinth_api/src/requests/tags.dart";
 import "package:modrinth_api/src/requests/teams.dart";
 import "package:modrinth_api/src/requests/users.dart";
 import "package:modrinth_api/src/requests/versions.dart";
