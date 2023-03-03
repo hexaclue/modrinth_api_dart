@@ -30,3 +30,8 @@ export "src/core/version/version_dependency.dart";
 export "src/core/version/version_file.dart";
 export "src/core/version/version_hashes.dart";
 export "src/core/version/version.dart";
+
+export "src/core/tags/tag_category.dart";
+export "src/core/tags/tag_game_version.dart";
+export "src/core/tags/tag_license.dart";
+export "src/core/tags/tag_loader.dart";
