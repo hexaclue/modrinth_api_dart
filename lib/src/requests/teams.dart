@@ -9,7 +9,7 @@ mixin TeamsRequests on IModrinthApi {
   ///
   /// [idOrSlug] is the id or slug of the team. Can **not** be empty.
   Future<List<TeamMember>> getTeamMembersByProject(String idOrSlug) async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/project/$idOrSlug/members");
+    Uri uri = Uri.parse("$baseUrl/project/$idOrSlug/members");
 
     final http.Response res = await client.get(uri);
 
@@ -26,7 +26,7 @@ mixin TeamsRequests on IModrinthApi {
   ///
   /// [id] is the id of the team. Can **not** be empty.
   Future<List<TeamMember>> getTeamMembers(String id) async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/team/$id/members");
+    Uri uri = Uri.parse("$baseUrl/team/$id/members");
 
     final http.Response res = await client.get(uri);
 
@@ -45,7 +45,7 @@ mixin TeamsRequests on IModrinthApi {
   ///
   /// Returns a list of lists of team members.
   Future<List<List<TeamMember>>> getMultipleTeamMembers(List<String> ids) async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/teams");
+    Uri uri = Uri.parse("$baseUrl/teams");
 
     uri = uri.replace(
       queryParameters: {

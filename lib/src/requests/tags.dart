@@ -11,7 +11,7 @@ import "package:modrinth_api/src/modrinth.dart";
 mixin TagsRequests on IModrinthApi {
   /// Get a list of categories, their icons, and applicable project types
   Future<List<TagCategory>> getCategories() async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/tag/category");
+    Uri uri = Uri.parse("$baseUrl/tag/category");
 
     final http.Response res = await client.get(uri);
 
@@ -26,7 +26,7 @@ mixin TagsRequests on IModrinthApi {
 
   /// Get a list of loaders, their icons, and supported project types
   Future<List<TagLoader>> getLoaders() async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/tag/loader");
+    Uri uri = Uri.parse("$baseUrl/tag/loader");
 
     final http.Response res = await client.get(uri);
 
@@ -41,7 +41,7 @@ mixin TagsRequests on IModrinthApi {
 
   /// Get a list of game versions and information about them
   Future<List<TagGameVersion>> getGameVersions() async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/tag/game_version");
+    Uri uri = Uri.parse("$baseUrl/tag/game_version");
 
     final http.Response res = await client.get(uri);
 
@@ -56,7 +56,7 @@ mixin TagsRequests on IModrinthApi {
 
   /// Get a list of licenses and information about them
   Future<List<TagLicense>> getLicenses() async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/tag/license");
+    Uri uri = Uri.parse("$baseUrl/tag/license");
 
     final http.Response res = await client.get(uri);
 
@@ -71,7 +71,7 @@ mixin TagsRequests on IModrinthApi {
 
   /// Get a list of donation platforms and information about them
   Future<List<DonationPlatform>> getDonationPlatforms() async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/tag/donation_platform");
+    Uri uri = Uri.parse("$baseUrl/tag/donation_platform");
 
     final http.Response res = await client.get(uri);
 
@@ -86,7 +86,7 @@ mixin TagsRequests on IModrinthApi {
 
   /// Get a list of valid report types
   Future<List<String>> getReportTypes() async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/tag/report_type");
+    Uri uri = Uri.parse("$baseUrl/tag/report_type");
 
     final http.Response res = await client.get(uri);
 

@@ -20,7 +20,7 @@ mixin VersionsRequests on IModrinthApi {
     List<String>? gameVersions,
     bool? featured,
   }) async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/project/$idOrSlug/version");
+    Uri uri = Uri.parse("$baseUrl/project/$idOrSlug/version");
 
     final Map<String, String> queryParams = {};
 
@@ -55,7 +55,7 @@ mixin VersionsRequests on IModrinthApi {
   ///
   /// [id] is the id of the version to get. Can **not** be empty.
   Future<Version> getVersion(String id) async {
-    final Uri uri = Uri.parse("${IModrinthApi.baseUrl}/version/$id");
+    final Uri uri = Uri.parse("$baseUrl/version/$id");
 
     final http.Response res = await client.get(uri);
 
@@ -70,7 +70,7 @@ mixin VersionsRequests on IModrinthApi {
   ///
   /// [ids] is the id or slug of the project to get. Can **not** be empty.
   Future<List<Version>> getMultipleVersions(List<String> ids) async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/versions");
+    Uri uri = Uri.parse("$baseUrl/versions");
 
     final Map<String, String> queryParams = {};
 
@@ -104,7 +104,7 @@ mixin VersionsRequests on IModrinthApi {
     HashAlgorithm algorithm = HashAlgorithm.sha1,
     bool? multiple,
   }) async {
-    final Uri uri = Uri.parse("${IModrinthApi.baseUrl}/version_file/$hash");
+    final Uri uri = Uri.parse("$baseUrl/version_file/$hash");
 
     final Map<String, String> queryParams = {
       "algorithm": algorithm.name,
@@ -134,7 +134,7 @@ mixin VersionsRequests on IModrinthApi {
     List<String> hashes, {
     HashAlgorithm algorithm = HashAlgorithm.sha1,
   }) async {
-    final Uri uri = Uri.parse("${IModrinthApi.baseUrl}/version_files");
+    final Uri uri = Uri.parse("$baseUrl/version_files");
 
     final http.Response res = await client.post(
       uri,
@@ -173,7 +173,7 @@ mixin VersionsRequests on IModrinthApi {
     required List<String> gameVersions,
     HashAlgorithm algorithm = HashAlgorithm.sha1,
   }) async {
-    final Uri uri = Uri.parse("${IModrinthApi.baseUrl}/version_file/$hash/update");
+    final Uri uri = Uri.parse("$baseUrl/version_file/$hash/update");
 
     final Map<String, String> queryParams = {
       "algorithm": algorithm.name,
@@ -216,7 +216,7 @@ mixin VersionsRequests on IModrinthApi {
     required List<String> gameVersions,
     HashAlgorithm algorithm = HashAlgorithm.sha1,
   }) async {
-    final Uri uri = Uri.parse("${IModrinthApi.baseUrl}/version_files/update");
+    final Uri uri = Uri.parse("$baseUrl/version_files/update");
 
     final Map<String, String> queryParams = {
       "algorithm": algorithm.name,

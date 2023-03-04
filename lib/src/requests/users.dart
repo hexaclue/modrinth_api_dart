@@ -12,7 +12,7 @@ mixin UsersRequests on IModrinthApi {
   ///
   /// [idOrUsername] is the id or username of the user. Can **not** be empty.
   Future<User> getUser(String idOrUsername) async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/user/$idOrUsername");
+    Uri uri = Uri.parse("$baseUrl/user/$idOrUsername");
 
     final http.Response res = await client.get(uri);
 
@@ -31,7 +31,7 @@ mixin UsersRequests on IModrinthApi {
       throw Exception("No API key provided @ getAuthenticatedUser");
     }
 
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/user");
+    Uri uri = Uri.parse("$baseUrl/user");
 
     final http.Response res = await client.get(uri);
 
@@ -48,7 +48,7 @@ mixin UsersRequests on IModrinthApi {
   ///
   /// Note that you can not use slugs here.
   Future<List<User>> getMultipleUsers(List<String> ids) async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/users");
+    Uri uri = Uri.parse("$baseUrl/users");
 
     uri = uri.replace(
       queryParameters: {
@@ -71,7 +71,7 @@ mixin UsersRequests on IModrinthApi {
   ///
   /// [idOrUsername] is the id or username of the user. Can **not** be empty.
   Future<List<Project>> getUserProjects(String idOrUsername) async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/user/$idOrUsername/projects");
+    Uri uri = Uri.parse("$baseUrl/user/$idOrUsername/projects");
 
     final http.Response res = await client.get(uri);
 
@@ -94,7 +94,7 @@ mixin UsersRequests on IModrinthApi {
       throw Exception("No API key provided @ getUserNotifications");
     }
 
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/user/$idOrUsername/notifications");
+    Uri uri = Uri.parse("$baseUrl/user/$idOrUsername/notifications");
 
     final http.Response res = await client.get(uri);
 
@@ -117,7 +117,7 @@ mixin UsersRequests on IModrinthApi {
       throw Exception("No API key provided @ getUserFollowedProjects");
     }
 
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/user/$idOrUsername/follows");
+    Uri uri = Uri.parse("$baseUrl/user/$idOrUsername/follows");
 
     final http.Response res = await client.get(uri);
 
@@ -140,7 +140,7 @@ mixin UsersRequests on IModrinthApi {
       throw Exception("No API key provided @ getUserPayoutHistory");
     }
 
-    final Uri uri = Uri.parse("${IModrinthApi.baseUrl}/user/$idOrUsername/payouts");
+    final Uri uri = Uri.parse("$baseUrl/user/$idOrUsername/payouts");
 
     final http.Response res = await client.get(uri);
 

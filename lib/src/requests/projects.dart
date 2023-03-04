@@ -29,7 +29,7 @@ mixin ProjectsRequests on IModrinthApi {
     int? limit,
     String? filters,
   }) async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/search");
+    Uri uri = Uri.parse("$baseUrl/search");
 
     final Map<String, String> queryParams = {};
 
@@ -80,7 +80,7 @@ mixin ProjectsRequests on IModrinthApi {
   ///
   /// [idOrSlug] is the id or slug of the project to get. Can **not** be empty.
   Future<Project> getProject(String idOrSlug) async {
-    final Uri uri = Uri.parse("${IModrinthApi.baseUrl}/project/$idOrSlug");
+    final Uri uri = Uri.parse("$baseUrl/project/$idOrSlug");
 
     final http.Response res = await client.get(uri);
 
@@ -95,7 +95,7 @@ mixin ProjectsRequests on IModrinthApi {
   ///
   /// Note that you can not use slugs here.
   Future<List<Project>> getMultipleProjects(List<String> ids) async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/projects");
+    Uri uri = Uri.parse("$baseUrl/projects");
 
     uri = uri.replace(
       queryParameters: {
@@ -120,7 +120,7 @@ mixin ProjectsRequests on IModrinthApi {
   ///
   /// Note: list may not be of size [count], as the API itself filters out projects that are not (publically) searchable.
   Future<List<Project>> getRandomProjects([int count = 10]) async {
-    Uri uri = Uri.parse("${IModrinthApi.baseUrl}/projects_random");
+    Uri uri = Uri.parse("$baseUrl/projects_random");
 
     uri = uri.replace(
       queryParameters: {
@@ -145,7 +145,7 @@ mixin ProjectsRequests on IModrinthApi {
   ///
   /// Note: this function does not throw if the request returns 404, as opposed to all other functions.
   Future<bool> checkProjectExists(String idOrSlug) async {
-    final Uri uri = Uri.parse("${IModrinthApi.baseUrl}/project/$idOrSlug/check");
+    final Uri uri = Uri.parse("$baseUrl/project/$idOrSlug/check");
 
     final http.Response res = await client.get(uri);
 
@@ -156,7 +156,7 @@ mixin ProjectsRequests on IModrinthApi {
   ///
   /// [idOrSlug] is the id or slug of the project to get. Can **not** be empty.
   Future<ProjectDependencies> getProjectDependencies(String idOrSlug) async {
-    final Uri uri = Uri.parse("${IModrinthApi.baseUrl}/project/$idOrSlug/dependencies");
+    final Uri uri = Uri.parse("$baseUrl/project/$idOrSlug/dependencies");
 
     final http.Response res = await client.get(uri);
 
