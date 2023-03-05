@@ -21,6 +21,10 @@ class IModrinthApi {
       throw ArgumentError("Project name must be in ASCII format. Currently, it contains non-ASCII characters.");
     }
 
+    if (project.isEmpty) {
+      throw ArgumentError("Project name must not be empty.");
+    }
+
     client = ApiHttpClient("@hihiqy1/modrinth_api_dart/0.0.0+infdev|user=$project", http.Client(), apiKey);
   }
 
